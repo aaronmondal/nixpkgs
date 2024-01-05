@@ -8,7 +8,7 @@
 , containerRuntimePath
 , configTemplate
 , libnvidia-container
-, autoAddOpenGLRunpathHook
+, cudaPackages
 }:
 let
   isolatedContainerRuntimePath = linkFarm "isolated_container_runtime_path" [
@@ -48,7 +48,7 @@ buildGoModule rec {
 
   nativeBuildInputs = [
     makeWrapper
-    autoAddOpenGLRunpathHook
+    cudaPackages.autoAddOpenGLRunpathHook
   ];
 
   checkFlags =
