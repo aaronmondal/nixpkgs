@@ -8,6 +8,7 @@
 , containerRuntimePath
 , configTemplate
 , libnvidia-container
+, autoAddOpenGLRunpathHook
 }:
 let
   isolatedContainerRuntimePath = linkFarm "isolated_container_runtime_path" [
@@ -26,13 +27,13 @@ let
 in
 buildGoModule rec {
   pname = "container-toolkit/container-toolkit";
-  version = "1.14.3";
+  version = "1.15.0-rc.1";
 
   src = fetchFromGitLab {
     owner = "nvidia";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-i2OWqP9HCccSEAlDlONTlwZOBV15uQFeLT5jEQTceyg=";
+    hash = "sha256-tbud1Yv+9nOGrc0ayW8uHbavUXXF5qx43oSTZci6Iys=";
   };
 
   vendorHash = null;
@@ -43,9 +44,12 @@ buildGoModule rec {
       --replace '/usr/bin/nvidia-container-runtime-hook' '${placeholder "out"}/bin/nvidia-container-runtime-hook'
   '';
 
-  ldflags = [ "-s" "-w" ];
+  ldflags = [ "-extldflags=-Wl,-z,lazy" "-s" "-w" ];
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [
+    makeWrapper
+    autoAddOpenGLRunpathHook
+  ];
 
   checkFlags =
     let
