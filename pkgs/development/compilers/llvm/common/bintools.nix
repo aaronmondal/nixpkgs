@@ -24,14 +24,14 @@ runCommand "llvm-binutils-${version}"
 
     ln -s $llvmBin/llvm-ar $out/bin/${targetPrefix}ar
     ln -s $llvmBin/llvm-ar $out/bin/${targetPrefix}dlltool
-    ln -s $llvmBin/llvm-ar $out/bin/${targetPrefix}ranlib
+    ln -s $llvmBin/llvm-ranlib $out/bin/${targetPrefix}ranlib
     ln -s $llvmBin/llvm-cxxfilt $out/bin/${targetPrefix}c++filt
     ln -s $llvmBin/llvm-dwp $out/bin/${targetPrefix}dwp
     ln -s $llvmBin/llvm-nm $out/bin/${targetPrefix}nm
     ln -s $llvmBin/llvm-objcopy $out/bin/${targetPrefix}objcopy
-    ln -s $llvmBin/llvm-objcopy $out/bin/${targetPrefix}strip
+    ln -s $llvmBin/llvm-strip $out/bin/${targetPrefix}strip
     ln -s $llvmBin/llvm-objdump $out/bin/${targetPrefix}objdump
-    ln -s $llvmBin/llvm-readobj $out/bin/${targetPrefix}readelf
+    ln -s $llvmBin/llvm-readelf $out/bin/${targetPrefix}readelf
     ln -s $llvmBin/llvm-size $out/bin/${targetPrefix}size
     ln -s $llvmBin/llvm-strings $out/bin/${targetPrefix}strings
     ln -s $llvmBin/llvm-symbolizer $out/bin/${targetPrefix}addr2line
